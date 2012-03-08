@@ -1,46 +1,17 @@
-from nltk import tokenize
-from nltk.probability import FreqDist
-from nltk.corpus import stopwords
+from nltk.model import ngram
+import pickle, os, argparse
 
-file = open('headlinesPrepped.txt')
+parser = argparse.ArgumentParser(description='Build a language model or use an existing one.')
+parser.add_argument('-c', dest='create', action='store_true', help='Create new language model, even if one exists')
+parser.add_argument('-n', dest='ngram_order', action='store', type=int, help='N-Gram order')
+parser.add_argument('-p', dest='pickle', action='store', type=str, help='Pickle file (default: ./unigrams.prepped)', default='./unigrams.prepped')
 
-sentences = []
+args = parser.parse_args()
 
-#sorry about this, been doing a lot of perl lately
-englishStopWords = stopwords.words('English')
+unigramsprepped = pickle.load(open(args.pickle))
 
-def good(token):
-    global englishStopWords
-    return token.isalnum() and token not in englishStopWords
-
-print 'prepping...'
-for line in file:
-    tokenized = tokenize.sent_tokenize(line[:-1])
-    for i in range(0,len(tokenized)):
-        if len(tokenized[i]) == 1:
-            sentences[-1] += tokenized[i]
-        else:
-            sentences.append(tokenized[i].lower())
+model = ngram.NgramModel(args.ngram_order, unigramsprepped)
 
 
-
-allTokens = []
-
-pw = tokenize.punkt.PunktWordTokenizer()
-
-for sent in sentences:
-    allTokens += pw.tokenize(sent)
-
-print 'getting frequencies'
-trigramFreqs = FreqDist("%s %s %s" % (allTokens[i], allTokens[i+1], allTokens[i+2]) for i in range(0,len(allTokens)-2) if (good(allTokens[i]) and good(allTokens[i+1])))
-bigramFreqs = FreqDist("%s %s" % (allTokens[i], allTokens[i+1]) for i in range(0,len(allTokens)-1) if good(allTokens[i]) )
-unigramFreqs = FreqDist(token for token in allTokens if good(token))
-
-print "\tuni\tbi\ttri"
-
-univals = unigramFreqs.items()
-bivals = bigramFreqs.items()
-trivals = trigramFreqs.items()
-
-for i in range(0,100):
-    print "%3d\t%s\t%s\t%s" % (i, univals[i][0], bivals[i][0], trivals[i][0])
+for i in range(0, 100):
+    model.generate(i+1 % 10)
