@@ -55,5 +55,7 @@ print "\nSaving data..."
 pickle.dump(unigramsPrepped, open('unigrams.prepped', 'w'))
 pickle.dump(bigramsPrepped, open('bigrams.prepped', 'w'))
 pickle.dump(trigramsPrepped, open('trigrams.prepped', 'w'))
+pickle.dump(allTokens, open('unigrams.raw', 'w'))
+pickle.dump(allTokens, open('sentences.raw', 'w'))
 
 print "done"

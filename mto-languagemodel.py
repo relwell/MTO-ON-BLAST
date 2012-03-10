@@ -1,17 +1,22 @@
-from nltk.model import ngram
-import pickle, os, argparse
+import pickle, os, argparse, nltk, re, random
 
-parser = argparse.ArgumentParser(description='Build a language model or use an existing one.')
+parser = argparse.ArgumentParser(description='Build a language model or use an existing one. You should run mto-analyze.py first.')
 parser.add_argument('-c', dest='create', action='store_true', help='Create new language model, even if one exists')
-parser.add_argument('-n', dest='ngram_order', action='store', type=int, help='N-Gram order')
-parser.add_argument('-p', dest='pickle', action='store', type=str, help='Pickle file (default: ./unigrams.prepped)', default='./unigrams.prepped')
+parser.add_argument('-p', dest='pickle', action='store', type=str, help='Pickle file (default: ./sentences.raw)', default='./sentences.raw')
+parser.add_argument('-n', dest='num_sentences', action='store', type=int, default=100, help='Number of sentences')
 
 args = parser.parse_args()
 
-unigramsprepped = pickle.load(open(args.pickle))
+data = pickle.load(open(args.pickle))
 
-model = ngram.NgramModel(args.ngram_order, unigramsprepped)
+if args.create:
+    text = nltk.Text(data)
+    pickle.dump(text, open('languagemodel.prepped', 'w'))
+else:
+    text = pickle.load(open('languagemodel.prepped'))
 
 
-for i in range(0, 100):
-    model.generate(i+1 % 10)
+for i in range(0,args.num_sentences):
+    text.generate(random.randrange(5, 20))
+
+
