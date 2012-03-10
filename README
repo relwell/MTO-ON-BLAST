@@ -5,19 +5,23 @@ I love MediaTakeOut. So I decided to make a language model for it.
 I ain't copywriting shit, all this open-source software is legit. I don't mind if you look around the code a little bit.
 
 mto-scrape.py 
-	Run this first. It grabs headlines from MediaTakeOut. It's really that easy. Takes <1hr.
+	Run this first. It grabs headlines from MediaTakeOut. 
+	It's really that easy. Takes <1hr.
 
 mto-analyze.py
 	Run this to get some statistics about what you pulled. 
-	You need the sentences.prepped file it generates to run your language model.
+	You need the sentences.prepped file it generates to run 
+	your language model.
 
 mto-languagemodel.py
-	This actually builds out the fake headlines. Because I'm lazy and I'm using NLTK's 
-	Text class (the regular ngram model won't pickle!), I'm just writing to a file from stdout. 
+	This actually builds out the fake headlines. Because I'm lazy 
+	and I'm using NLTK's Text class (the regular ngram model won't 
+	pickle!), I'm just writing to a file from stdout. 
 	Options are provided in this, so take a look.
 
 generated.txt
-	Here's an example of ~20k headlines. I think that it might be adding in newlines to the language model, 
+	Here's an example of ~20k headlines. I think that it might be 
+	adding in newlines to the language model, 
 	so I need to fix that eventually. Not today though.
 
 
