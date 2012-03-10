@@ -2,7 +2,8 @@ MediaTakeOut Headline Generator from Robert Elwell
 
 I love MediaTakeOut. So I decided to make a language model for it. 
 
-I ain't copywriting shit, all this open-source software is legit. I don't mind if you look around the code a little bit.
+I ain't copywriting shit, all this open-source software is legit. 
+I don't mind if you look around the code a little bit.
 
 mto-scrape.py 
 	Run this first. It grabs headlines from MediaTakeOut. 
