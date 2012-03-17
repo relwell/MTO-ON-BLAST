@@ -16,14 +16,12 @@ mto-analyze.py
 
 mto-languagemodel.py
 	This actually builds out the fake headlines. Because I'm lazy 
-	and I'm using NLTK's Text class (the regular ngram model won't 
-	pickle!), I'm just writing to a file from stdout. 
+	and I'm using NLTK's Text and NGram language model classes.
+	I'm just writing to a file from stdout to get my sentences.
 	Options are provided in this, so take a look.
 
 generated.txt
-	Here's an example of ~20k headlines. I think that it might be 
-	adding in newlines to the language model, 
-	so I need to fix that eventually. Not today though.
-
+	Here's an example of headlines. 
+	Take a look at it in action at http://robertelwell.info/mediatakeout-headline-generator/
 
 Requires NLTK with the punkt and stopwords dictionaries downloaded.
