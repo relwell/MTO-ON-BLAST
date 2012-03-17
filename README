@@ -22,6 +22,7 @@ mto-languagemodel.py
 
 generated.txt
 	Here's an example of headlines. 
-	Take a look at it in action at http://robertelwell.info/mediatakeout-headline-generator/
+	Take a look at it in action at 
+	http://robertelwell.info/mediatakeout-headline-generator/
 
 Requires NLTK with the punkt and stopwords dictionaries downloaded.
