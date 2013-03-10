@@ -62,13 +62,14 @@ unigramFreqs = FreqDist(unigramsPrepped)
 
 """
 Print out statistics about our corpus
+This looks better if you pipe it out to column -t
 """
-print "\tuni\tbi\ttri"
+print "||\tuni\t||\tbi\t.\t||\ttri"
 univals = unigramFreqs.items()
 bivals = bigramFreqs.items()
 trivals = trigramFreqs.items()
 for i in range(0,100):
-    print "%3d\t%s\t%s\t%s" % (i, univals[i][0], bivals[i][0], trivals[i][0])
+    print "%3d\t%s\t||\t%s\t||\t%s" % (i, univals[i][0], bivals[i][0], trivals[i][0])
 
 """
 We use these pickled values when generating text in mto-languagemodel.py
