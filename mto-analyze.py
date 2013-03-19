@@ -13,7 +13,7 @@ Stopwords are function words that are the most
 common and least meaningful words in English.
 These include 'the', 'a', 'so', 'of', etc.
 """
-englishStopWords = stopwords.words('English')
+englishStopWords = stopwords.words('english')
 def good(token):
     global englishStopWords
     return token.isalnum() and token not in englishStopWords
